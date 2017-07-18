@@ -150,5 +150,9 @@ class BasicUserParseWorker(object):
         :param links: list of strings (urls)
         :return:
         """
+
+        if (len(self.to_crawl) >= self.max_links):
+            return
+
         [self.to_crawl.append(item) for item in links if item not in self.crawled and self.cur_links < self.max_links]
         self.to_crawl = list(set(links))
